@@ -18,7 +18,7 @@ export default {
 
       if(url.pathname.startsWith('/subs2')){
         list = SUBS2;
-      }else if(url.pathname.startsWith('/subs')){
+      }else{
         list = SUBS;
       }
       const subs = await fetch(list);

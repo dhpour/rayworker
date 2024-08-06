@@ -12,7 +12,7 @@ Variables to set
 `IP` is a Clouflare's clean ip or a domain bound to cl's clean ips.
 `HOST` is the link of you worker or a domain bound to the worker. The latter is better.
 `SNI` a random subdomain of your `HOST`.
-`SUBS` is a link to a subscription list which each line is a config subs.
+`SUBS` is a link to a subscription list, he worker load its content line by line as a configs sub.
 `SUBS2` is an alternative to `SUBS2`
 ```
 

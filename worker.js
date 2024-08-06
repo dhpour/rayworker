@@ -1,11 +1,11 @@
 export default {
   async fetch(request, env) {
 
-    const IP = await env.V2RAY.get('ip');
-    const HOST = await env.V2RAY.get('host');
-    const SNI = await env.V2RAY.get('sni');
-    const SUBS = await env.V2RAY.get('cfglist');
-    const SUBS2 = await env.V2RAY.get('cfglist2');
+    const IP = await env.YOUR_KV_NAMESPACE.get('ip');
+    const HOST = await env.YOUR_KV_NAMESPACE.get('host');
+    const SNI = await env.YOUR_KV_NAMESPACE.get('sni');
+    const SUBS = await env.YOUR_KV_NAMESPACE.get('cfglist');
+    const SUBS2 = await env.YOUR_KV_NAMESPACE.get('cfglist2');
 
     let url = new URL(request.url);
     

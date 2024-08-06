@@ -14,4 +14,6 @@ Variables to set
 - `SUBS` is a link to a subscription list. The worker load its content line by line as a configs sub.
 - `SUBS2` is an alternative to `SUBS2`
 
-
+usage
+-----
+Use `https://YOUR_WOKER_DOMAIN_OR_HOST_DOMAIN/subs` or alternative `https://YOUR_WOKER_DOMAIN_OR_HOST_DOMAIN/subs2` for subscription.

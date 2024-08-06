@@ -1,8 +1,7 @@
 # Cloudflare v2ray worker
 A unified method to use various configs of v2ray in a Cloudflare's worker.
-Reads address, host, sni and config lists from Cloudflare's KV namespaces.
 
-Set-up
+Setup
 ------
 Create a worker and add worker.js code to it. For `IP`, `HOST`, `SNI`, `SUBS` and `SUBS2` you can use direct variable hardcoded or you can use Cloudflare's KV namespace mechanism.
 

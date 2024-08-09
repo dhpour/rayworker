@@ -1,11 +1,37 @@
 export default {
   async fetch(request, env) {
 
-    const IP = await env.YOUR_KV_NAMESPACE.get('ip');
-    const HOST = await env.YOUR_KV_NAMESPACE.get('host');
-    const SNI = await env.YOUR_KV_NAMESPACE.get('sni');
-    const SUBS = await env.YOUR_KV_NAMESPACE.get('cfglist');
-    const SUBS2 = await env.YOUR_KV_NAMESPACE.get('cfglist2');
+    const IP = await env.V2RAY.get('ip');
+    const HOST = await env.V2RAY.get('host');
+    const SNI = await env.V2RAY.get('sni');
+
+    const subs1 = [
+      'https://raw.githubusercontent.com/Epodonios/v2ray-configs/main/Config list1.txt',
+      'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/Eternity',
+      'https://raw.githubusercontent.com/AzadNetCH/Clash/main/AzadNet_iOS.txt'
+    ];
+
+    const subs2 = [
+      'https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/list/00.txt',
+      'https://raw.githubusercontent.com/Leon406/SubCrawler/main/sub/share/all4',
+      'https://raw.githubusercontent.com/mfuu/v2ray/master/clash.yaml',
+      'https://raw.githubusercontent.com/peasoft/NoMoreWalls/master/list.yml',
+      'https://raw.githubusercontent.com/a2470982985/getNode/main/clash.yaml',
+      'https://raw.githubusercontent.com/mlabalabala/v2ray-node/main/nodefree4clash.txt',
+      'https://raw.githubusercontent.com/mahdibland/V2RayAggregator/master/sub/sub_merge.txt',
+      'https://raw.githubusercontent.com/mfuu/v2ray/master/v2ray'
+    ];
+
+    const subs3 = [
+      'https://raw.githubusercontent.com/mahdibland/ShadowsocksAggregator/master/sub/sub_merge.txt',
+      'https://raw.fastgit.org/Pawdroid/Free-servers/main/sub',
+      'https://raw.fastgit.org/freefq/free/master/v2',
+      'https://raw.githubusercontent.com/awesome-vpn/awesome-vpn/master/all',
+      'https://raw.githubusercontent.com/AzadNetCH/Clash/main/V2Ray.txt',
+      'https://raw.githubusercontent.com/mianfeifq/share/main/data2023025.txt',
+      'https://raw.githubusercontent.com/aiboboxx/v2rayfree/main/v2',
+      'https://raw.githubusercontent.com/barry-far/V2ray-Configs/main/Sub2.txt',
+    ];
 
     let url = new URL(request.url);
     
@@ -14,18 +40,23 @@ export default {
 
     if (url.pathname.startsWith('/subs')) {
 
-      let list = ''
+      let list = 'https://github.com/dhpour/rayworker/raw/main/subs';
 
-      if(url.pathname.startsWith('/subs2')){
-        list = SUBS2;
-      }else{
-        list = SUBS;
+      let subs = [];
+      if(url.pathname.startsWith('/subs3')){
+        subs = subs3;
       }
-      const subs = await fetch(list);
-      const all_encoded_configs = await subs.text();
+      else if(url.pathname.startsWith('/subs2')){
+        subs = subs2;
+      }else{
+        subs = subs1;
+      }
+
+      //const subs = await fetch(list);
+      //const all_encoded_configs = await subs.text();
 
       let new_configs = '';
-      for(let sub of all_encoded_configs.split('\n')){
+      for(let sub of subs){//all_encoded_configs.split('\n')){
 
         let subName = sub.split('/')[3]
         let sub_count = 1;
@@ -38,7 +69,7 @@ export default {
           try {
             configs = atob(encoded_configs);
           } catch(err){
-            console.log('atob error for all config: ', subName);
+            //console.log('atob error for all config: ', subName);
           }
         }
 
@@ -49,7 +80,7 @@ export default {
             try{
               config = atob(config);
             }catch(err){
-              console.log('atob error for config: ', subName, sub_count-1, '-', sub_count);
+              //console.log('atob error for config: ', subName, sub_count-1, '-', sub_count);
               continue;
             }
 
@@ -74,15 +105,15 @@ export default {
               }
 
               let encodedConfig = 'vmess://' + btoa(JSON.stringify(new_config));
-              console.log('conf: ', JSON.stringify(new_config))
-              console.log('conf: ', encodedConfig)
+              //console.log('conf: ', JSON.stringify(new_config))
+              //console.log('conf: ', encodedConfig)
               new_configs = new_configs  + encodedConfig+ '\n';
               sub_count += 1;
             }
           }
         }
       }
-      console.log('all configs:', new_configs.split("\n").length);
+      //console.log('all configs:', new_configs.split("\n").length);
       return new Response(new_configs);
 
     } else {

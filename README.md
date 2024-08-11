@@ -3,7 +3,7 @@ A unified method to use various configs of v2ray in a Cloudflare's worker.
 
 Setup
 ------
-Create a worker and add worker.js code to it. For `IP`, `HOST`, `SNI`, `SUBS` and `SUBS2`, you can either use hardcoded direct variables or utilize Cloudflare’s KV namespace mechanism. However, using Cloudflare’s KV system may subject you to the free tier rate limits.
+Create a worker and add worker.js code to it. For `IP`, `HOST`, `SNI`, ~~`SUBS` and `SUBS2`~~, you can either use hardcoded direct variables or utilize Cloudflare’s KV namespace mechanism. However, using Cloudflare’s KV system may subject you to the free tier rate limits.
 
 Variables to set
 ---------------------------------------

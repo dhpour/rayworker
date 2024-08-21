@@ -17,6 +17,6 @@ usage
 -----
 Use `https://YOUR_WOKER_DOMAIN_OR_HOST_DOMAIN/subs` or alternative `https://YOUR_WOKER_DOMAIN_OR_HOST_DOMAIN/subs2` for subscription.
 
-cloudflare's ip
+Cloudflare's ip
 ---------------
 For finding and setting clean ips of cloudflare, you can use this [android app](https://github.com/dhpour/cloudflare-ip-tester-app)

@@ -38,6 +38,13 @@ export default {
     let realhostname = url.pathname.split('/')[1];
     let realpathname = url.pathname.split('/')[2];
 
+    function safePathMake(first, second){
+      if(!first.endsWith("/") && !second.startsWith("/")){
+          return first + "/" + second
+      }
+      return first + second
+    }
+    
     if (url.pathname.startsWith('/subs')) {
 
       let list = 'https://github.com/dhpour/rayworker/raw/main/subs';
@@ -94,7 +101,7 @@ export default {
                 id: config_parsed.id,
                 net: config_parsed.net,
                 host: HOST,
-                path:config_parsed.host + config_parsed.path,
+                path: safePathMake(config_parsed.host, config_parsed.path),
                 tls: config_parsed.tls,
                 sni: SNI,
                 aid: '0',

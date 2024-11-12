@@ -92,7 +92,7 @@ export default {
             }
 
             let config_parsed = JSON.parse(config);
-            if (config_parsed.net == 'ws' && config_parsed.port == 443) {
+            if (config_parsed.net == 'ws' && config_parsed.port == 443 && config_parsed.host) {
               let new_config = {
                 v: '2',
                 ps: subName + '-' + sub_count,
